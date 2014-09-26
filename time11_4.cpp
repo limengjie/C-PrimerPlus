@@ -12,6 +12,8 @@
 #ifndef MYTIME_H_
 #define MYTIME_H_
 
+#include <iostream>
+
 class Time {
   private:
     int hours;
@@ -23,7 +25,8 @@ class Time {
     void addHr(int h);
     //Time operator+(const Time & t) const;
     friend Time operator+(const Time & t0, const Time & t1); 
-    void show() const;
+    friend std::ostream & operator<<(std::ostream & os, const Time & t);
+    //void show() const;
 };
 #endif
 
@@ -64,19 +67,22 @@ Time operator+(const Time & t0, const Time & t1) {
   return sum;
 }
 
-void Time::show() const {
-  cout << "Hours " << hours << "  Minutes " << minutes << endl;
+ostream & operator<<(ostream & os, const Time & t) {
+  os << t.hours << " hours " << t.minutes << " minutes";
+
+  return os;
 }
+
+//void Time::show() const {
+  //cout << "Hours " << hours << "  Minutes " << minutes << endl;
+//}
 
 int main () {
   Time aida(3, 35);
   Time tosca(2, 48);
-  //aida.show();
-  //tosca.show();
   Time sum;
 
   sum = operator+(aida, tosca);
   //sum = aida + tosca;
-  sum.show();
-
+  cout << sum << endl;
 }
