@@ -30,8 +30,6 @@ class Time {
 };
 #endif
 
-#include <iostream>
-
 using namespace std;
 
 Time::Time() {
